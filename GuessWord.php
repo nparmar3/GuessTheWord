@@ -89,4 +89,17 @@ Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
 <input type='hidden' name='wrongstr' value='<?php echo $wrongstr ?>' />
 <input type='submit' value='guess' />
 </form>
+<h1>this ain't it : <?php echo implode(', ', $wrong) ?><br /> </h1>
+<br>
+<h1><a href='hangman.php'>restart?</a></h1>
+<h1><a href='leaderboard.php'>leaderboard</a></h1>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>
 <a href='3d10-hangman-generator.php'>Start Over</a>
