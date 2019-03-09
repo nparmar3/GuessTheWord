@@ -1,35 +1,20 @@
 <html>
 
 <head>
-
-<style>
-body {
-	background-image: url(spongebobback.jpg);
-	background-repeat: no-repeat;
-    background-size: cover;
-	font-size: 69px;
-	text-align: center;
-	font-family: bookman old style;
-}
-h1 {
-	font-size: 20;
-	text-align: center;
-	font-family: bookman old style;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="GuessWordDesign.css">
 </head>
 
 <body>
+
 <br>
-<h1> Guess The Word: Spongebob Edition! :) <h1>
+<h1> Guess The Word: Spongebob Edition! :) </h1>
 
 <?php
-import 'leaderboard.php' ;
 
 $letters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 
 if (empty($_POST)) {
-    $words = explode("\n", file_get_contents('words.list.txt'));
+    $words = explode("\n", file_get_contents('wordlist.txt'));
     $right = array_fill_keys($letters, ' _ ');
     $wrong = array();
     shuffle($words);
@@ -41,10 +26,7 @@ if (empty($_POST)) {
     foreach ($wordletters as $letter) {
         $show .= $right[$letter];
     }
-} 
-
-else {
-	$score = 1000;
+} else {
     $word = $_POST['word'];
     $guess = strtolower($_POST['guess']);
     $right = unserialize($_POST['rightstr']);
@@ -56,30 +38,24 @@ else {
         $wordletters = str_split($word);
         foreach ($wordletters as $letter) {
             $show .= $right[$letter];
-        }
-        
+        }   
     } else {
         $show = '';
         $wrong[$guess] = $guess;
-	foreach($wrong as $wrongGuess){
-		$score = $score - 100;
-	}
-        if (count($wrong) == 6) {
+        if (count($wrong) == 10) {
             $show = $word;
-			echo "YOUR SCORE IS: " .$score. "<br>" ;
         } else {
             foreach ($wordletters as $letter) {
                 $show .= $right[$letter];
             }
         }
-    
-	}
-	
+    }
     $rightstr = serialize($right);
     $wrongstr = serialize($wrong);
 }
 
 ?>
+
 <?php echo $show ?><br />
 <form method='post'>
 <input name='guess' />
@@ -88,13 +64,9 @@ else {
 <input type='hidden' name='wrongstr' value='<?php echo $wrongstr ?>' />
 <input type='submit' value='guess' />
 </form>
-<h1>this ain't it : <?php echo implode(', ', $wrong) ?><br /> </h1>
-<br>
-<h1><a href='hangman.php'>restart?</a></h1>
-<h1><a href='leaderboard.php'>leaderboard</a></h1>
-
-<br>
-<br>
+<h2 class="othertext">this ain't it : </h2> <span id="red">  <?php echo implode(', ', $wrong) ?> </span><br />
+<h2 class="othertext"><a href='GuessWord.php'>restart?</a></h2>
+<h2 class="othertext"><a href='leaderboard.php'>leaderboard</a></h2>
 <br>
 <br>
 <br>
