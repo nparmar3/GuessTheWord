@@ -10,11 +10,10 @@
 <h1> Guess The Word: Spongebob Edition! :) </h1>
 
 <?php
-
 $letters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 
 if (empty($_POST)) {
-    $words = explode("\n", file_get_contents('wordlist.txt'));
+    $words = explode("\n", file_get_contents('words.list.txt'));
     $right = array_fill_keys($letters, ' _ ');
     $wrong = array();
     shuffle($words);
@@ -26,7 +25,10 @@ if (empty($_POST)) {
     foreach ($wordletters as $letter) {
         $show .= $right[$letter];
     }
-} else {
+} 
+
+else {
+	$score = 1000;
     $word = $_POST['word'];
     $guess = strtolower($_POST['guess']);
     $right = unserialize($_POST['rightstr']);
@@ -38,18 +40,25 @@ if (empty($_POST)) {
         $wordletters = str_split($word);
         foreach ($wordletters as $letter) {
             $show .= $right[$letter];
-        }   
+        }
+        
     } else {
         $show = '';
         $wrong[$guess] = $guess;
-        if (count($wrong) == 10) {
+	foreach($wrong as $wrongGuess){
+		$score = $score - 100;
+	}
+        if (count($wrong) == 6) {
             $show = $word;
+			echo "YOUR SCORE is " .$score. "<br>" ;
         } else {
             foreach ($wordletters as $letter) {
                 $show .= $right[$letter];
             }
         }
-    }
+    
+	}
+	
     $rightstr = serialize($right);
     $wrongstr = serialize($wrong);
 }
