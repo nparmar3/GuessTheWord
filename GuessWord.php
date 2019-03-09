@@ -20,17 +20,17 @@ h1 {
 </head>
 
 <body>
-
 <br>
-<h1> Guess The Word: Spongebob Edition! :) </h1>
+<h1> Guess The Word: Spongebob Edition! :) <h1>
 
 <?php
+
 
 $letters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 
 if (empty($_POST)) {
-    $words = explode("\n", file_get_contents('wordlist.txt'));
-    $right = array_fill_keys($letters, ' _ ');
+    $words = explode("\n", file_get_contents('words.list.txt'));
+    $right = array_fill_keys($letters, '.');
     $wrong = array();
     shuffle($words);
     $word = strtolower($words[0]);
@@ -41,7 +41,10 @@ if (empty($_POST)) {
     foreach ($wordletters as $letter) {
         $show .= $right[$letter];
     }
-} else {
+} 
+
+else {
+	$score = 1000;
     $word = $_POST['word'];
     $guess = strtolower($_POST['guess']);
     $right = unserialize($_POST['rightstr']);
@@ -53,24 +56,31 @@ if (empty($_POST)) {
         $wordletters = str_split($word);
         foreach ($wordletters as $letter) {
             $show .= $right[$letter];
-        }   
+        }
+        
     } else {
         $show = '';
         $wrong[$guess] = $guess;
-        if (count($wrong) == 10) {
+	foreach($wrong as $wrongGuess){
+		$score = $score - 100;
+	}
+        if (count($wrong) == 6) {
             $show = $word;
+			echo "YOUR SCORE IS: " .$score. "<br>" ;
         } else {
             foreach ($wordletters as $letter) {
                 $show .= $right[$letter];
             }
         }
-    }
+    
+	}
+	
     $rightstr = serialize($right);
     $wrongstr = serialize($wrong);
 }
 
 ?>
-
+Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
 <?php echo $show ?><br />
 <form method='post'>
 <input name='guess' />
@@ -79,16 +89,4 @@ if (empty($_POST)) {
 <input type='hidden' name='wrongstr' value='<?php echo $wrongstr ?>' />
 <input type='submit' value='guess' />
 </form>
-<h1>this ain't it : <?php echo implode(', ', $wrong) ?><br /> </h1>
-<br>
-<h1><a href='hangman.php'>restart?</a></h1>
-<h1><a href='leaderboard.php'>leaderboard</a></h1>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-</body>
-</html>
+<a href='3d10-hangman-generator.php'>Start Over</a>
