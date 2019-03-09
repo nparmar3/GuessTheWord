@@ -2,7 +2,6 @@
 //Login Page
 //Login page should be as follows and works based on session. 
 //If the user close the session, it will erase the session data.
-
    ob_start();
    session_start();
 ?>
@@ -13,20 +12,11 @@
 ?>
 
 <html lang = "en">
-   
    <head>
       <title>Login </title>
-      <link href = "css/bootstrap.min.css" rel = "stylesheet">
+      <link rel="stylesheet" type="text/css" href="GuessWordDesign.css">
       
       <style>
-         body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-image: url(spongebobback.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-         }
-         
          .form-signin {
             max-width: 330px;
             padding: 15px;
@@ -51,7 +41,7 @@
             box-sizing: border-box;
             padding: 10px;
             font-size: 16px;
-         }
+         } 
          
          .form-signin .form-control:focus {
             z-index: 2;
@@ -70,19 +60,14 @@
             border-top-right-radius: 0;
             border-color:#017572;
          }
-         
-         h2{
-            text-align: center;
-            color: orange;
-            font-size: 50px;
-         }
+
       </style>
       
    </head>
 	
    <body>
-      
-      <h2>Enter Username and Password</h2> 
+   
+      <h1>Enter Username and Password</h1> 
       <div class = "container form-signin">
          
          <?php
@@ -96,18 +81,13 @@
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = 'spongebob';
-                  
-                  //echo 'You have entered valid use name and password<br>';
-                  //echo "Welcome ". $_POST['username'];
-                  //$link= <a href = "hangman.php" >;
-                  //echo "<a href='".$link."'>Link</a>";
-                  header("Location: http://codd.cs.gsu.edu/~vnguyen70/hangman.php");
+                  header("Location: http://codd.cs.gsu.edu/~vnguyen70/GuessWord.php");
                }else {
-                  $msg = 'Wrong username or password';
+                $msg = 'Wrong username or password';
                }
             }
          ?>
-      </div> <!-- /container -->
+      </div> 
       
       <div class = "container">
       
@@ -117,16 +97,13 @@
             <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
             <input type = "text" class = "form-control" 
                name = "username" placeholder = "username = _____" 
-               required autofocus></br>
+               required autofocus><br>
             <input type = "password" class = "form-control"
                name = "password" placeholder = "password = _____" required>
-            <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
+               <br> 
+            <button class = "button" type = "submit" style="height:50px; width:100px"
                name = "login">Login</button>
          </form>
-			
-         Click here to clean <a href = "logout.php" tite = "Logout">Session.
-         
       </div> 
-      
    </body>
 </html>
