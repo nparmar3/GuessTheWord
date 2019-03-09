@@ -102,4 +102,3 @@ Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
 
 </body>
 </html>
-<a href='3d10-hangman-generator.php'>Start Over</a>
