@@ -30,7 +30,7 @@ $letters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'
 
 if (empty($_POST)) {
     $words = explode("\n", file_get_contents('words.list.txt'));
-    $right = array_fill_keys($letters, '.');
+    $right = array_fill_keys($letters, ' _ ');
     $wrong = array();
     shuffle($words);
     $word = strtolower($words[0]);
@@ -80,7 +80,6 @@ else {
 }
 
 ?>
-Bad Guesses : <?php echo implode(', ', $wrong) ?><br />
 <?php echo $show ?><br />
 <form method='post'>
 <input name='guess' />
