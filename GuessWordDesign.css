@@ -7,13 +7,12 @@ body {
 	font-family: bookman old style;
 }
 h1 {
-	font-size: 20;
+	font-size: 50px;
 	text-align: center;
 	font-family: bookman old style;
-	background-color: yellow; 	
-	color: black; 		
+	background-color: yellow; 	 		
 	border: 5px dashed orange;
-	padding: 10px;
+
 }
 .othertext {
 	font-size: 20;
