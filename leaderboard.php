@@ -48,19 +48,19 @@ echo '<h2> YOUR SCORE is: ' .$score. '</h2><br>' ;
 	</tr>
 	<tr>
 		<td> Fish #1 </td>
-		<td> 1100 </td>
+		<td> 2100 </td>
 	</tr>
 	<tr>
 		<td> Patrick </td>
-		<td> 420 </td>
-	</tr>
-	<tr>
-		<td> Fish #2 </td>
-		<td> 200 </td>
+		<td> 1800 </td>
 	</tr>
 	<tr>
 		<td> Pearl </td>
-		<td> 100 </td>
+		<td> 1000 </td>
+	</tr>
+	<tr>
+		<td> Fish #2 </td>
+		<td> 900 </td>
 	</tr>
 </table>
 </h2>
